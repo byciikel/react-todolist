@@ -1,31 +1,3 @@
-# <a href='https://github.com/mikechabot/react-boilerplate'><img src='https://raw.githubusercontent.com/mikechabot/react-boilerplate/gh-pages/assets/img/header_photo.png' alt='logo' aria-label='https://github.com/mikechabot/react-boilerplate' /></a>
-
-A slightly opinionated yet dead simple boilerplate for ReactJS, Webpack 4, and React Router v4.
-
-:heart: Webpack 4
-<br/>
-:heart: Code splitting
-<br/>
-:heart: React Router
-<br/>
-:heart: Redux 
-
-<div align="center"> 
-  <a href="https://travis-ci.org/mikechabot/react-boilerplate">
-    <img src="https://travis-ci.org/mikechabot/react-boilerplate.svg?branch=master" alt="build status" />
-  </a>
-  <a href="https://david-dm.org/mikechabot/react-boilerplate">
-    <img src="https://david-dm.org/mikechabot/react-boilerplate.svg" alt="dependency status" />
-  </a>
-  <a href="https://github.com/mikechabot/react-boilerplate/pulls">
-    <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" alt="prs welcome" />
-  </a>
-</div>
-
-
-
-----
-
 ## Table of Contents
 
 - [Live Demo](#live-demo)
@@ -35,7 +7,7 @@ A slightly opinionated yet dead simple boilerplate for ReactJS, Webpack 4, and R
 
 ## <a id="live-demo">Live Demo</a>
 
- http://mikechabot.github.io/react-boilerplate
+ https://byciikel.github.io/react-todolist/
  
 ----
 
@@ -80,7 +52,7 @@ A slightly opinionated yet dead simple boilerplate for ReactJS, Webpack 4, and R
 
 ## <a id="getting-started">Getting Started</a>
 
-1. `$ git clone https://github.com/mikechabot/react-boilerplate.git`
+1. `$ git clone https://github.com/byciikel/react-todolist.git`
 2. `$ npm install`
 3. Launch environment:
    *  **Production**: `$ npm start`
