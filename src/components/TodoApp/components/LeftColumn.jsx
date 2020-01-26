@@ -1,6 +1,6 @@
 import React, { Fragment, Component } from 'react';
 import { connect } from 'react-redux'
-import { toggleAddModalThunk } from '../../../redux/actions/todo-modal-thunk'
+import { toggleModalThunk } from '../../../redux/actions/todo-modal-thunk'
 import { loadTodos } from '../../../redux/actions/todo-thunk'
 
 import Icon from '../../common/Icon';
@@ -13,7 +13,6 @@ class LeftColumn extends Component {
   }
 
   render() {
-    console.log(this.props)
     return (
       <div className="column">
         <TodoList
@@ -24,8 +23,8 @@ class LeftColumn extends Component {
             </div>
           )}
           button={(
-            <a className="card-header-icon" aria-label="more options" onClick={this.props.toggleAddModal}>
-              <Icon icon="plus-circle" className="has-text-primary"/>
+            <a className="card-header-icon" aria-label="more options" onClick={this.props.toggleModal}>
+              <Icon icon="plus-circle" className="has-text-info"/>
             </a>
           )}
           body={<TaskList todos={this.props.todos} state="doing"/>}
@@ -37,14 +36,14 @@ class LeftColumn extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    isVisible: state.todoModal.addModalIsVisible,
+    isVisible: state.todoModal.isVisible,
     todos: state.entities && state.entities.todos,
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    toggleAddModal: () => dispatch(toggleAddModalThunk()),
+    toggleModal: () => dispatch(toggleModalThunk()),
     loadTodos: () => dispatch(loadTodos())
   }
 }
