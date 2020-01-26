@@ -5,8 +5,8 @@ import { BrowserRouter } from 'react-router-dom';
 
 import ConfigService from './services/common/config-service';
 
-// import App from './components/App';
-import App from './components/App-old';
+import App from './components/App';
+// import App from './components/App-old';
 
 export default function Root ({
   store
