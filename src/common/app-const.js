@@ -13,5 +13,8 @@ export const INITIAL_STATE = {
     [ENTITY_KEY.TODO]: {}
 
   },
-  counter: 0
+  counter: 0,
+  todoModal: {
+    isVisible: false,
+  }
 };
