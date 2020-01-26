@@ -1,7 +1,7 @@
-import React, { Fragment } from '../../../node_modules/react';
+import React, { Fragment } from 'react';
 
-import LeftColumn from './LeftColumn'
-import RightColumn from './RightColumn'
+import LeftColumn from './components/LeftColumn'
+import RightColumn from './components/RightColumn'
 
 const TodoApp = ({
 

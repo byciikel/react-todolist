@@ -1,7 +1,7 @@
-import React, { Fragment } from '../../../node_modules/react';
-import Icon from '../common/Icon';
-import TodoList from './components/TodoList'
-import TaskList from './components/TaskList'
+import React, { Fragment } from 'react';
+import Icon from '../../common/Icon';
+import TodoList from './TodoList'
+import TaskList from './TaskList'
 
 const LeftColumn = ({
 

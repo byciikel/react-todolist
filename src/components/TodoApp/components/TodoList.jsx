@@ -1,4 +1,4 @@
-import React, { Fragment } from '../../../../node_modules/react';
+import React, { Fragment } from 'react';
 
 const TodoList = ({ title, subtitle, icon, body }) => (
   <Fragment>
