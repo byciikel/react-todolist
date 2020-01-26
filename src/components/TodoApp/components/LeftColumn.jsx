@@ -23,7 +23,7 @@ class LeftColumn extends Component {
             </div>
           )}
           button={(
-            <a className="card-header-icon" aria-label="more options" onClick={this.props.toggleModal}>
+            <a className="card-header-icon" aria-label="more options" onClick={() => this.props.toggleModal('ADD')}>
               <Icon icon="plus-circle" className="has-text-info"/>
             </a>
           )}
@@ -43,7 +43,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    toggleModal: () => dispatch(toggleModalThunk()),
+    toggleModal: (visible) => dispatch(toggleModalThunk(visible)),
     loadTodos: () => dispatch(loadTodos())
   }
 }

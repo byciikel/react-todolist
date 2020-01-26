@@ -10,11 +10,9 @@ export const INITIAL_STATE = {
     [ENTITY_KEY.FOO]: {},
     [ENTITY_KEY.BAR]: {},
     [ENTITY_KEY.BAZ]: {},
-    [ENTITY_KEY.TODO]: {}
-
   },
   counter: 0,
   todoModal: {
-    isVisible: false,
+    currentVisible: 'NULL',
   }
 };

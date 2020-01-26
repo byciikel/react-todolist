@@ -1,7 +1,7 @@
 import { toggleModal } from './todo-modal-action-creators'
 
-export const toggleModalThunk = () => {
+export const toggleModalThunk = (visible) => {
   return (dispatch) => {
-    dispatch(toggleModal())
+    dispatch(toggleModal(visible))
   }
 }
