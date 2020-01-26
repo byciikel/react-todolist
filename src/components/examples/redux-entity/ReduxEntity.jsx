@@ -11,7 +11,8 @@ const ReduxEntity = ({
   entities,
   fetchFoo,
   fetchBar,
-  fetchBaz
+  fetchBaz,
+  fetchTodo,
 }) => {
   const getLoadEntityThunk = (key) => {
     switch (key) {
@@ -21,6 +22,8 @@ const ReduxEntity = ({
         return fetchBar;
       case ENTITY_KEY.BAZ:
         return fetchBaz;
+      case ENTITY_KEY.TODO:
+        return fetchTodo;
     }
   };
   return (
