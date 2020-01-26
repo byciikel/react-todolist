@@ -3,14 +3,22 @@ import { connect } from 'react-redux'
 import {
   toggleModalThunk
 } from '../../../redux/actions/todo-modal-thunk'
+import {
+  addTodoThunk
+} from '../../../redux/actions/todo-thunk'
 import TodoModal from './TodoModal'
+
+const initialState = {
+  form: {
+    title: '',
+    description: ''
+  }
+}
 
 export class AddModal extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      form: {}
-    }
+    this.state = initialState
   }
 
   getDateNow() {
@@ -30,6 +38,12 @@ export class AddModal extends Component {
       }
     })
   }
+
+  async saveTodo(event) {
+    await this.props.toggleModal('NULL')
+    await this.props.addTodo(this.state.form)
+    this.setState(initialState)
+  }
   
   render() {
     return (
@@ -38,12 +52,23 @@ export class AddModal extends Component {
         title="Add Todos"
         body={(
           <div>
-            <input className="input margin-1" type="text" placeholder="Title" onChange={this.titleChange.bind(this)}/>
-            <textarea className="textarea margin-1" placeholder="Description" onChange={this.titleChange.bind(this)}></textarea>
+            <input
+              className="input margin-1"
+              type="text"
+              placeholder="Title"
+              value={this.state.form.title}
+              onChange={this.titleChange.bind(this)}
+            />
+            <textarea
+              className="textarea margin-1"
+              placeholder="Description"
+              value={this.state.form.description}
+              onChange={this.titleChange.bind(this)}
+            />
           </div>
         )}
         button={(
-          <button className="button is-primary">Save</button>
+          <button className="button is-primary" onClick={this.saveTodo.bind(this)}>Save</button>
         )}
         close={() => this.props.toggleModal('NULL')}
       />
@@ -60,7 +85,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    toggleModal: (visible) => dispatch(toggleModalThunk(visible))
+    toggleModal: (visible) => dispatch(toggleModalThunk(visible)),
+    addTodo: (form) => dispatch(addTodoThunk(form))
   }
 }
 
