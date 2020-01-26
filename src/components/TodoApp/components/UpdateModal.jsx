@@ -100,6 +100,7 @@ export class UpdateModal extends Component {
               value={this.state.form.description || ''}
               onChange={this.titleChange.bind(this)}
             />
+            <label className="label margin-1">Created At: {this.state.form.createdAt}</label>
           </div>
         )}
         button={
