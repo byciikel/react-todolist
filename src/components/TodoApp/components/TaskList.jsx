@@ -38,7 +38,11 @@ export class TaskList extends Component {
   
     const filterTodos = () => {
       let stateNumber = state === "doing" ? 0 : 1
-      return data.filter(todo => todo.status === stateNumber)
+      if (stateNumber === 0) {
+        return data.filter(todo => todo.status === stateNumber).sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
+      } else if (stateNumber === 1) {
+        return data.filter(todo => todo.status === stateNumber).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+      }
     }
   
     return (
