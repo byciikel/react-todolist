@@ -42,7 +42,8 @@ export class UpdateModal extends Component {
   deletedTodo() {
     let todos = this.props.todos
     let todoIndex = todos.findIndex(todo => todo.id === this.state.form.id)
-    return todos.slice(todoIndex+1)
+    todos.splice(todoIndex, 1)
+    return todos
   }
 
   async markTodo(status) {
