@@ -1,11 +1,16 @@
 import React, { Fragment } from 'react';
+import { connect } from 'react-redux'
+import {
+  toggleModalThunk
+} from '../../../redux/actions/todo-modal-thunk'
+
 import Icon from '../../common/Icon';
 import TodoList from './TodoList'
 import TaskList from './TaskList'
 
-const LeftColumn = ({
 
-}) => {
+const LeftColumn = (props) => {
+  console.log(props)
   return (
     <div className="column">
       <TodoList
@@ -16,7 +21,7 @@ const LeftColumn = ({
               Doing List
             </div>
             <div className="column">
-              <button className="button is-primary is-rounded is-small">
+              <button className="button is-primary is-rounded is-small" onClick={props.toggleModal}>
                 Add New
               </button>
             </div>
@@ -33,4 +38,19 @@ const LeftColumn = ({
   )
 }
 
-export default LeftColumn;
+const mapStateToProps = (state) => {
+  return {
+    isVisible: state.todoModal.isVisible
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    toggleModal: () => dispatch(toggleModalThunk())
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(LeftColumn)
