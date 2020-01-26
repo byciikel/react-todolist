@@ -1,40 +1,21 @@
-import React, { Fragment } from 'react';
-import { connect } from 'react-redux'
-import {
-  toggleModalThunk
-} from '../../../redux/actions/todo-modal-thunk'
+import React from 'react';
 
-const TodoModal = (props) => (
-  <div className={`modal ${props.isVisible ? 'is-active' : ''}`}>
-    <div className="modal-background" onClick={props.toggleModal}></div>
+const TodoModal = ({ actived, title, body, button, close}) => (
+  <div className={`modal ${actived ? 'is-active' : ''}`}>
+    <div className="modal-background" onClick={close}></div>
     <div className="modal-card">
       <header className="modal-card-head">
-        <p className="modal-card-title">Modal title</p>
-        <button className="delete" aria-label="close" onClick={props.toggleModal}></button>
+        <p className="modal-card-title">{title}</p>
+        <button className="delete" aria-label="close" onClick={close}></button>
       </header>
       <section className="modal-card-body">
+        {body}
       </section>
       <footer className="modal-card-foot">
-        <button className="button is-success">Save changes</button>
-        <button className="button">Cancel</button>
+        {button}
       </footer>
     </div>
   </div>
 )
 
-const mapStateToProps = (state) => {
-  return {
-    isVisible: state.todoModal.isVisible
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    toggleModal: () => dispatch(toggleModalThunk())
-  }
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(TodoModal)
+export default TodoModal

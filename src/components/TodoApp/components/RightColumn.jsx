@@ -13,6 +13,7 @@ class RightColumn extends Component {
   }
 
   render() {
+    console.log(this.props)
     return (
       <div className="column">
         <TodoList

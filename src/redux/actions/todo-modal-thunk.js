@@ -1,7 +1,23 @@
-import { toggleModal } from './todo-modal-action-creators'
+import {
+  toggleAddModal,
+  toggleUpdateModal
+} from './todo-modal-action-creators'
 
-export const toggleModalThunk = () => {
+export const toggleAddModalThunk = () => {
   return (dispatch) => {
-    dispatch(toggleModal())
+    dispatch(toggleAddModal())
+  }
+}
+
+export const toggleUpdateModalThunk = () => {
+  return (dispatch) => {
+    dispatch(toggleUpdateModal())
+  }
+}
+
+export const closeModalThunk = () => {
+  return (dispatch) => {
+    dispatch(toggleAddModal())
+    dispatch(toggleUpdateModal())
   }
 }

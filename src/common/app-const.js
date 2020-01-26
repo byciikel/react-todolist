@@ -15,6 +15,8 @@ export const INITIAL_STATE = {
   },
   counter: 0,
   todoModal: {
-    isVisible: false,
-  }
+    addModalIsVisible: false,
+    updateModalIsVisible: false,
+    statusIndex: 0
+  },
 };

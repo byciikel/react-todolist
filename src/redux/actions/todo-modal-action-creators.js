@@ -1,9 +1,17 @@
 import {
-  TODO_MODAL_TOGGLE_VISIBILITY
+  ADD_MODAL_TOGGLE_VISIBILITY,
+  UPDATE_MODAL_TOGGLE_VISIBILITY,
+  CHANGE_INDEX_STATUS,
 } from './types'
 
-export const toggleModal = () => {
+export const toggleAddModal = () => {
   return {
-    type: TODO_MODAL_TOGGLE_VISIBILITY
+    type: ADD_MODAL_TOGGLE_VISIBILITY
+  }
+}
+
+export const toggleUpdateModal = () => {
+  return {
+    type: UPDATE_MODAL_TOGGLE_VISIBILITY
   }
 }
