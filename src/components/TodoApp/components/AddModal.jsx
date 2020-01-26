@@ -1,5 +1,6 @@
 import React, { Fragment, Component } from 'react';
 import { connect } from 'react-redux'
+import dateFormat from 'dateformat'
 import {
   toggleModalThunk
 } from '../../../redux/actions/todo-modal-thunk'
@@ -20,13 +21,7 @@ export class AddModal extends Component {
     super(props);
     this.state = initialState
   }
-
-  getDateNow() {
-    var date = new Date();
-    var formatedDate = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " +  date.getHours() + ":" + date.getMinutes();
-    return formatedDate;
-  }
-
+  
   titleChange(event) {
     this.setState({
       form: {
@@ -34,7 +29,7 @@ export class AddModal extends Component {
         id: this.props.todos.length + 1,
         [event.target.placeholder.toLowerCase()]: event.target.value,
         status: 0,
-        createdAt: this.getDateNow()
+        createdAt: dateFormat(new Date(), "yyyy-mm-dd hh:MM")
       }
     })
   }
