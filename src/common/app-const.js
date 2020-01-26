@@ -2,7 +2,7 @@ export const ENTITY_KEY = {
   FOO: 'foo',
   BAR: 'bar',
   BAZ: 'baz',
-  TODO: 'todo',
+  TODOS: 'todos',
 };
 
 export const INITIAL_STATE = {
