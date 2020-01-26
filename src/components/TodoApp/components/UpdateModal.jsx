@@ -35,21 +35,39 @@ export class UpdateModal extends Component {
     })
   }
 
+  filteredTodo() {
+    return this.props.todos.map(todo => todo.id === this.state.form.id ? this.state.form : todo)
+  }
+
+  deletedTodo() {
+    let todos = this.props.todos
+    let todoIndex = todos.findIndex(todo => todo.id === this.state.form.id)
+    return todos.slice(todoIndex+1)
+  }
+
   async markTodo(event) {
-    await this.props.toggleModal('NULL')
+    await this.setState({
+      form: {
+        ...this.state.form,
+        status: 1,
+      }
+    })
+    await this.props.updateTodo(this.filteredTodo())
+    this.props.toggleModal('NULL')
   }
 
   async updateTodo(event) {
-    let updatedTodos = this.props.todos.map(todo => todo.id === this.state.form.id ? this.state.form : todo)
-    await this.props.updateTodo(updatedTodos)
+    await this.props.updateTodo(this.filteredTodo())
     this.props.toggleModal('NULL')
   }
 
   async deleteTodo(event) {
-    await this.props.toggleModal('NULL')
+    await this.props.updateTodo(this.deletedTodo())
+    this.props.toggleModal('NULL')
   }
   
   render() {
+    console.log(this.state.form)
     return (
       <TodoModal
         actived={this.props.isVisible === 'UPDATE' ? 'is-active' : ''}
