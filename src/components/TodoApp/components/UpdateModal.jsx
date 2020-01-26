@@ -1,24 +1,23 @@
 import React, { Fragment, Component } from 'react';
 import { connect } from 'react-redux'
 import {
-  toggleModalThunk
+  toggleModalThunk,
 } from '../../../redux/actions/todo-modal-thunk'
 import {
-  addTodoThunk
+  updateTodoThunk
 } from '../../../redux/actions/todo-thunk'
 import TodoModal from './TodoModal'
 
-const initialState = {
-  form: {
-    title: '',
-    description: ''
-  }
-}
-
-export class AddModal extends Component {
+export class UpdateModal extends Component {
   constructor(props) {
     super(props);
-    this.state = initialState
+    this.state = {
+      form: {}
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({ form: nextProps.filteredTodo })
   }
 
   getDateNow() {
@@ -31,44 +30,53 @@ export class AddModal extends Component {
     this.setState({
       form: {
         ...this.state.form,
-        id: this.props.todos.length + 1,
         [event.target.placeholder.toLowerCase()]: event.target.value,
-        status: 0,
-        createdAt: this.getDateNow()
       }
     })
   }
 
-  async saveTodo(event) {
+  async markTodo(event) {
     await this.props.toggleModal('NULL')
-    await this.props.addTodo(this.state.form)
-    this.setState(initialState)
+  }
+
+  async updateTodo(event) {
+    let updatedTodos = this.props.todos.map(todo => todo.id === this.state.form.id ? this.state.form : todo)
+    await this.props.updateTodo(updatedTodos)
+    this.props.toggleModal('NULL')
+  }
+
+  async deleteTodo(event) {
+    await this.props.toggleModal('NULL')
   }
   
   render() {
     return (
       <TodoModal
-        actived={this.props.isVisible === 'ADD' ? 'is-active' : ''}
-        title="Add Todo"
+        actived={this.props.isVisible === 'UPDATE' ? 'is-active' : ''}
+        title="Update Todo"
         body={(
           <div>
             <input
               className="input margin-1"
               type="text"
               placeholder="Title"
-              value={this.state.form.title}
+              value={this.state.form.title || ''}
               onChange={this.titleChange.bind(this)}
             />
             <textarea
               className="textarea margin-1"
               placeholder="Description"
-              value={this.state.form.description}
+              value={this.state.form.description || ''}
               onChange={this.titleChange.bind(this)}
             />
           </div>
         )}
         button={(
-          <button className="button is-primary button-right" onClick={this.saveTodo.bind(this)}>Save</button>
+          <div className="button-right">
+            <button className="button is-info" onClick={this.markTodo.bind(this)}>Mark Done</button>
+            <button className="button is-primary" onClick={this.updateTodo.bind(this)}>Update</button>
+            <button className="button is-danger" onClick={this.deleteTodo.bind(this)}>Delete</button>
+          </div>
         )}
         close={() => this.props.toggleModal('NULL')}
       />
@@ -79,6 +87,7 @@ export class AddModal extends Component {
 const mapStateToProps = (state) => {
   return {
     isVisible: state.todoModal.currentVisible,
+    filteredTodo: state.todoModal.dataTodo,
     todos: state.entities.todos && state.entities.todos.data
   }
 }
@@ -86,11 +95,11 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     toggleModal: (visible) => dispatch(toggleModalThunk(visible)),
-    addTodo: (form) => dispatch(addTodoThunk(form))
+    updateTodo: (form) => dispatch(updateTodoThunk(form))
   }
 }
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(AddModal)
+)(UpdateModal)

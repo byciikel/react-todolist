@@ -16,3 +16,11 @@ export function addTodoThunk(form) {
     {append: true}
   );
 }
+
+export function updateTodoThunk(form) {
+  return loadEntity(
+    ENTITY_KEY.TODOS,
+    TodoDomainService.setTodoList(form),
+    {append: false}
+  );
+}

@@ -14,6 +14,10 @@ export class TaskList extends Component {
       this.setState({ id: '' })
     } else {
       this.setState({ id: id })
+      let filteredTodosById = this.props.todos.data.find(todo => todo.id === id)
+      this.props.filteredTodo(filteredTodosById)
+      this.props.clicked()
+      this.setState({ id: '' })
     }
   }
 
