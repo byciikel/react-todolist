@@ -38,3 +38,18 @@ export function fetchBaz () {
       })
   );
 }
+
+/**
+ * Thunk action that simulates a delayed, failed API call
+ * @returns {Function}  thunk
+ */
+export function fetchTodo () {
+  return loadEntity(
+    ENTITY_KEY.TODO,
+    // ExampleDomainService.getFakePromise(true)
+    ExampleDomainService.getTodo()
+      .catch(error => {
+        console.error(error);
+      })
+  );
+}

@@ -4,7 +4,7 @@ import Entity from './Entity';
 import { connect } from 'react-redux';
 
 import Flex from '../../common/glamorous/Flex';
-import { fetchFoo, fetchBar, fetchBaz } from '../../../redux/actions/thunks';
+import { fetchFoo, fetchBar, fetchBaz, fetchTodo } from '../../../redux/actions/thunks';
 import { ENTITY_KEY } from '../../../common/app-const';
 
 const ReduxEntity = ({
@@ -31,6 +31,7 @@ const ReduxEntity = ({
       {
         Object.keys(ENTITY_KEY).map((key, index) => {
           const entityKey = ENTITY_KEY[key];
+          console.log(entityKey)
           return (
             <Entity
               key={index}
@@ -50,12 +51,13 @@ ReduxEntity.propTypes = {
   entities: PropTypes.object.isRequired,
   fetchFoo: PropTypes.func.isRequired,
   fetchBar: PropTypes.func.isRequired,
-  fetchBaz: PropTypes.func.isRequired
+  fetchBaz: PropTypes.func.isRequired,
+  fetchTodo: PropTypes.func.isRequired
 };
 
 export default connect(
   (state) => ({
     entities: state.entities
   }),
-  { fetchFoo, fetchBar, fetchBaz }
+  { fetchFoo, fetchBar, fetchBaz, fetchTodo }
 )(ReduxEntity);
