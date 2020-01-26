@@ -7,10 +7,9 @@ const ColumnBody = ({ title, subtitle, icon, body }) => (
   <Fragment>
     <div>
       <h1 className="title">
-        <Icon icon={icon} className="has-text-info"/>&nbsp;{title}
+        {title}
       </h1>
       <h2 className="subtitle">
-        <Icon icon="angle-right"/>&nbsp;
         {subtitle}
       </h2>
     </div>
@@ -22,22 +21,26 @@ const TodoListBody = ({
 
 }) => {
   return (
-    <div className="notification m-top--small">
-      <ul>
+      <ul className="menu-list">
         <li className="subtitle">
-          <Icon icon="circle"/>&nbsp;
-          Task 1
+          <a>
+            <Icon icon="circle"/>&nbsp;
+            Task 1
+          </a>
         </li>
         <li className="subtitle">
-          <Icon icon="circle"/>&nbsp;
-          Task 2
+          <a>
+            <Icon icon="circle"/>&nbsp;
+            Task 2
+          </a>
         </li>
         <li className="subtitle">
-          <Icon icon="circle"/>&nbsp;
-          Task 3
+          <a>
+            <Icon icon="circle"/>&nbsp;
+            Task 3
+          </a>
         </li>
       </ul>
-    </div>
   )
 }
 
@@ -52,8 +55,19 @@ const Body = ({
 
             <div className="column">
               <ColumnBody
-                icon="list-alt"
-                title="Doing List"
+                title={(
+                  <div className="columns">
+                    <div className="column is-four-fifths">
+                      <Icon icon="list-alt" className="has-text-info"/>&nbsp;
+                      Doing List
+                    </div>
+                    <div className="column">
+                      <button className="button is-primary is-rounded is-small">
+                        Add New
+                      </button>
+                    </div>
+                  </div>
+                )}
                 subtitle={(
                   <span>
                       List of todos that hasn't been done
@@ -65,8 +79,12 @@ const Body = ({
 
             <div className="column">
               <ColumnBody
-                icon="check-circle"
-                title="Done List"
+                title={(
+                  <div>
+                    <Icon icon="check-circle" className="has-text-info"/>&nbsp;
+                    Done List
+                  </div>
+                )}
                 subtitle={(
                   <span>
                       List of todos that has been done
