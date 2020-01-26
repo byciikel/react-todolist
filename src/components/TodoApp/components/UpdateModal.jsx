@@ -45,13 +45,22 @@ export class UpdateModal extends Component {
     return todos.slice(todoIndex+1)
   }
 
-  async markTodo(event) {
-    await this.setState({
-      form: {
-        ...this.state.form,
-        status: 1,
-      }
-    })
+  async markTodo(status) {
+    if (status === 'done') {
+      await this.setState({
+        form: {
+          ...this.state.form,
+          status: 1,
+        }
+      })
+    } else if (status == 'doing') {
+      await this.setState({
+        form: {
+          ...this.state.form,
+          status: 0,
+        }
+      })
+    }
     await this.props.updateTodo(this.filteredTodo())
     this.props.toggleModal('NULL')
   }
@@ -67,10 +76,13 @@ export class UpdateModal extends Component {
   }
   
   render() {
-    console.log(this.state.form)
     return (
       <TodoModal
-        actived={this.props.isVisible === 'UPDATE' ? 'is-active' : ''}
+        actived={
+          this.props.isVisible === 'UPDATE' ? 'is-active' :
+          this.props.isVisible === 'UPDATE_WITHOUT_DELETE' ? 'is-active' : 
+          ''
+        }
         title="Update Todo"
         body={(
           <div>
@@ -89,13 +101,21 @@ export class UpdateModal extends Component {
             />
           </div>
         )}
-        button={(
-          <div className="button-right">
-            <button className="button is-info" onClick={this.markTodo.bind(this)}>Mark Done</button>
-            <button className="button is-primary" onClick={this.updateTodo.bind(this)}>Update</button>
-            <button className="button is-danger" onClick={this.deleteTodo.bind(this)}>Delete</button>
-          </div>
-        )}
+        button={
+          this.props.isVisible === 'UPDATE' ?
+            <div className="button-right">
+              <button className="button is-info" onClick={() => this.markTodo('done')}>Mark as Done</button>
+              <button className="button is-primary" onClick={this.updateTodo.bind(this)}>Update</button>
+              <button className="button is-danger" onClick={this.deleteTodo.bind(this)}>Delete</button>
+            </div>
+          :
+          this.props.isVisible === 'UPDATE_WITHOUT_DELETE' ?
+            <div className="button-right">
+              <button className="button is-info" onClick={() => this.markTodo('doing')}>Mark as Doing</button>
+              <button className="button is-primary" onClick={this.updateTodo.bind(this)}>Update</button>
+            </div>
+          : <div/>
+        }
         close={() => this.props.toggleModal('NULL')}
       />
     )

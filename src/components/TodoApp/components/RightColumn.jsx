@@ -1,6 +1,9 @@
 import React, { Fragment, Component } from 'react';
 import { connect } from 'react-redux'
-import { toggleModalThunk } from '../../../redux/actions/todo-modal-thunk'
+import {
+  toggleModalThunk,
+  changeDataTodoThunk
+} from '../../../redux/actions/todo-modal-thunk'
 import { loadTodos } from '../../../redux/actions/todo-thunk'
 
 import Icon from '../../common/Icon';
@@ -18,11 +21,18 @@ class RightColumn extends Component {
         <TodoList
           title={(
             <div>
-              <Icon icon="check-circle" className="has-text-info"/>&nbsp;
+              <Icon icon="list-alt" className="has-text-info"/>&nbsp;
               Done List
             </div>
           )}
-          body={<TaskList todos={this.props.todos} state="done"/>}
+          body={
+            <TaskList
+              todos={this.props.todos}
+              state="done"
+              clicked={() => this.props.toggleModal('UPDATE_WITHOUT_DELETE')}
+              filteredTodo={(todo) => this.props.changeDataTodo(todo)}
+            />
+          }
         />
       </div>
     )
@@ -38,7 +48,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    toggleModal: () => dispatch(toggleModalThunk()),
+    toggleModal: (visible) => dispatch(toggleModalThunk(visible)),
+    changeDataTodo: (todo) => dispatch(changeDataTodoThunk(todo)),
     loadTodos: () => dispatch(loadTodos())
   }
 }
