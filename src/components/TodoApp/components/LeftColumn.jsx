@@ -8,9 +8,7 @@ import Icon from '../../common/Icon';
 import TodoList from './TodoList'
 import TaskList from './TaskList'
 
-
 const LeftColumn = (props) => {
-  console.log(props)
   return (
     <div className="column">
       <TodoList
