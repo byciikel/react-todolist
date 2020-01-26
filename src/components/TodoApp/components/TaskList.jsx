@@ -24,7 +24,6 @@ const TaskList = ({ todos, state }) => {
       {filterTodos().map((todo, index) => (
         <li key={index} className="subtitle">
           <a>
-            <Icon icon="circle"/>&nbsp;
             {todo.title}
           </a>
         </li>

@@ -1,17 +1,21 @@
 import React, { Fragment } from 'react';
 
-const TodoList = ({ title, subtitle, icon, body }) => (
-  <Fragment>
-    <div>
-      <h1 className="title">
-        {title}
-      </h1>
-      <h2 className="subtitle">
-        {subtitle}
-      </h2>
+const TodoList = ({ title, button, body }) => (
+  <div className="card">
+    <header className="card-header">
+      <div className="card-header-title">
+        <h1 className="title">
+          {title}
+        </h1>
+      </div>
+      {button}
+    </header>
+    <div className="card-content">
+      <div className="content">
+        {body}
+      </div>
     </div>
-    {body}
-  </Fragment>
+  </div>
 );
 
 export default TodoList

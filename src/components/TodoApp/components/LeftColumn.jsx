@@ -13,27 +13,19 @@ class LeftColumn extends Component {
   }
 
   render() {
-    console.log('todos', this.props.todos)
     return (
       <div className="column">
         <TodoList
           title={(
-            <div className="columns">
-              <div className="column is-four-fifths">
-                <Icon icon="list-alt" className="has-text-info"/>&nbsp;
-                Doing List
-              </div>
-              <div className="column">
-                <button className="button is-primary is-rounded is-small" onClick={this.props.toggleModal}>
-                  Add New
-                </button>
-              </div>
+            <div>
+              <Icon icon="list-alt" className="has-text-info"/>&nbsp;
+              Doing List
             </div>
           )}
-          subtitle={(
-            <span>
-                List of todos that hasn't been done
-            </span>
+          button={(
+            <a className="card-header-icon" aria-label="more options" onClick={this.props.toggleModal}>
+              <Icon icon="plus-circle" className="has-text-info"/>
+            </a>
           )}
           body={<TaskList todos={this.props.todos} state="doing"/>}
         />

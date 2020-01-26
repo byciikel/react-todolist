@@ -13,22 +13,14 @@ class RightColumn extends Component {
   }
 
   render() {
-    console.log('todos', this.props.todos)
     return (
       <div className="column">
         <TodoList
           title={(
-            <div className="columns">
-              <div className="column">
-                <Icon icon="list-alt" className="has-text-info"/>&nbsp;
-                Done List
-              </div>
+            <div>
+              <Icon icon="check-circle" className="has-text-info"/>&nbsp;
+              Done List
             </div>
-          )}
-          subtitle={(
-            <span>
-                List of todos that has been done
-            </span>
           )}
           body={<TaskList todos={this.props.todos} state="done"/>}
         />
