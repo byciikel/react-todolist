@@ -31,7 +31,6 @@ const ReduxEntity = ({
       {
         Object.keys(ENTITY_KEY).map((key, index) => {
           const entityKey = ENTITY_KEY[key];
-          console.log(entityKey)
           return (
             <Entity
               key={index}
